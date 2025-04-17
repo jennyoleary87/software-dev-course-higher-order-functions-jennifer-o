@@ -50,6 +50,15 @@ function filterProducts(item) {
 let filteredProducts = filterProducts(products);
 
 /*
+ALTERNATE SOLUTION
+function filterProducts(products, callback) {
+  return products.filter(callback);
+}
+const inStockProducts = filterProducts(products, (product) =>
+product.inStock);
+*/
+
+/*
 🔹 Task 2: Transform Product Names
 
 Use `map()` to create a new array of product names in UPPERCASE.
@@ -74,6 +83,7 @@ Step-by-Step:
 2. Return a new function that takes a product object.
 3. Use this returned function inside a `map()` call to apply discounts to all products.
 */
+
 function applyDiscount(discountPercent) {
   return function (item) {
     return {
@@ -83,6 +93,20 @@ function applyDiscount(discountPercent) {
   };
 }
 let discountedProducts = products.map(applyDiscount(10));
+
+/*
+ALTERNATE SOLUTION
+function applyDiscount(discount) {
+  return function (price) {
+    return price - price * (discount / 100);
+  };
+}
+const discount10 = applyDiscount(10); // 10% discount
+const discountedPrices = products.map((product) => ({
+  ...product,
+  price: discount10(product.price),
+}));
+*/
 
 /*
 🔹 Task 4: Calculate Total Inventory Value
